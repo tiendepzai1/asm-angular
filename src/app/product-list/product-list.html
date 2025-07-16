@@ -1,0 +1,63 @@
+<!-- Interpolation -->
+<p>{{ title }}</p>
+
+<!-- Property Binding -->
+<div [ngClass]="{ available: isAvailable }">
+  Status: {{ isAvailable ? 'Available' : 'Unavailable' }}
+</div>
+
+<!-- Event Binding -->
+<div>
+  <button (click)="handleClick()">Click</button>
+</div>
+
+<!-- Two-way Binding -->
+<div>
+  <input [(ngModel)]="productName" type="text" placeholder="Product name" />
+  <p>Product name: {{ productName }}</p>
+  
+</div>
+
+<!-- Danh sách sản phẩm đơn giản -->
+<div *ngIf="products.length > 0; else noProduct">
+  <ul>
+    <li *ngFor="let item of products">
+      Tên sản phẩm: {{ item.name }}, ID: {{ item.id }}
+    </li>
+  </ul>
+</div>
+
+<!-- Danh sách lọc -->
+<h2>Product List</h2>
+<input [(ngModel)]="filterText" placeholder="Filter by name" />
+<div *ngIf="filterProducts().length > 0; else noProducts">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filterProducts()">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>${{ product.price }}</td>
+        <td [ngStyle]="{ color: product.inStock ? 'green' : 'red' }">
+          {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Templates -->
+<ng-template #noProducts>
+  <p>No products match the filter.</p>
+</ng-template>
+
+<ng-template #noProduct>
+  <p>Không có sản phẩm nào.</p>
+</ng-template>
