@@ -7,7 +7,7 @@ import { User} from './user/user';
 export const routes: Routes = [
 
    {
-     path : '',
+     path : 'product',
     component :ProductListComponent,
    },
    {
