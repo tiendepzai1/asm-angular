@@ -28,7 +28,7 @@ export class ProductListComponent {
   filterProducts() {
     return this.products.filter((product) =>
       product.name.toLowerCase().includes(this.filterText.toLowerCase()) ||
-     product.id.toString().includes(this.filterText.toLocaleLowerCase()) ||
+     product.id.toString().includes(this.filterText.toString()) ||
      product.price.toString().includes(this.filterText.toLocaleLowerCase())
     );
   }

@@ -34,6 +34,13 @@ export class User {
     role: 'moderator'
   }
 ];
+filterText ='';
+checkUser() {
+  return this.users.filter((user)=>
+    user.id.toString().includes(this.filterText.toString()) ||
+  user.name.toLowerCase().includes(this.filterText.toLowerCase())
+  )
 
+}
 
 }
