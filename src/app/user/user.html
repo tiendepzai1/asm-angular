@@ -1,14 +1,27 @@
-<p>user works!</p>
-<h2>list-user</h2>
+
+
 
 <div>
-    <table>
+   <div style="display: flex;
+   justify-content: space-around;">
+     <h2>Danh Sách Người Dùng</h2>   
+    <div>
+         <label for="">Tìm kiếm</label>
+     <input [(ngModel)] = "filterText" />
+     
+    </div>
+   </div>
+<!-- <div *ngIf = "filterUser().length>0;else noProduct"> -->
+    
+    <table >
+        
         <thead>
             <tr>
                 <th>id</th>
                 <th>name</th>
                 <th>email</th>
                 <th>role</th>
+                <th>sdt</th>
             </tr>
         </thead>
         <tbody>
@@ -17,8 +30,10 @@
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.role}}</td>
+                <td>{{user.sdt}}</td>
 
             </tr>
         </tbody>
     </table>
+<!-- </div> -->
 </div>

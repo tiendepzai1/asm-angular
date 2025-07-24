@@ -1,0 +1,33 @@
+<div class="cart-container" *ngIf="product; else emptyCart">
+  <h2>Giỏ hàng của bạn</h2>
+
+  <div class="product-info">
+    <img [src]="product.image" alt="{{ product.name }}" width="150" />
+    
+    <div class="details">
+      <h3>{{ product.name }}</h3>
+      <p>Giá: {{ product.price }}$</p>
+
+      <label>
+  Số lượng:
+  <input
+    type="number"
+    [(ngModel)]="product.quantity"
+    min="1"
+    (input)="updateTotal()"
+  />
+</label>
+
+      <p><strong>Tổng: {{ total }}$</strong></p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="removeProduct()">Xóa sản phẩm</button>
+    <button (click)="checkout()">Đặt hàng</button>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <h2>Giỏ hàng trống.</h2>
+</ng-template>

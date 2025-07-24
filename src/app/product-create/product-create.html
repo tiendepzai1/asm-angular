@@ -1,0 +1,53 @@
+<p>product-create works!</p>
+
+<form #productForm="ngForm" (ngSubmit)="handleSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="product.name" required minlength="3" #name="ngModel"
+      [ngClass]="{'is-invalid' : name.invalid && name.touched}" class="form-control" />
+
+    <div *ngIf="name.invalid && name.touched">
+      <div *ngIf="name.errors?.['required']">name is required</div>
+      <div *ngIf="name.errors?.['minlength']">độ dài phải hơn 3 kí tự</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price" [(ngModel)]="product.price" required min="1" #price="ngModel"
+      [ngClass]="{'is-invalid' : price.invalid && price.touched}" class="form-control" />
+
+     <div *ngIf ="price.invalid && price.touched">
+      <div *ngIf ="price.errors?.['required']" > giá không được bỏ trống</div>
+      <div *ngIf ="price.errors?.['min']">giá phải lơn hơn 0</div>
+     </div>
+
+  </div>
+
+  <div>
+    <label for="image">Image</label>
+    <input type="text"
+    id="image"
+    name="image"
+    [(ngModel)] = "product.image"
+    required
+    #image = "ngModel"
+    [ngClass]="{'is-invalid': price.invalid && price.touched}"
+    class="form-control"
+    />
+    <div *ngIf ="image.invalid && image.touche">
+      <div *ngIf = "image.errors?.['required']">nhập đường dẫn ảnh</div>
+    </div>
+  </div>
+
+ 
+
+<button 
+  [disabled]="productForm.invalid" 
+  type="submit" 
+  class="btn btn-primary"
+>
+  Submit
+</button>
+
+</form>
