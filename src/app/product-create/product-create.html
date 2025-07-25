@@ -35,7 +35,7 @@
     [ngClass]="{'is-invalid': price.invalid && price.touched}"
     class="form-control"
     />
-    <div *ngIf ="image.invalid && image.touche">
+    <div *ngIf ="image.invalid && image.touched">
       <div *ngIf = "image.errors?.['required']">nhập đường dẫn ảnh</div>
     </div>
   </div>

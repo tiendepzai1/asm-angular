@@ -15,28 +15,32 @@ export class User {
     name: 'Nguyễn Văn A',
     email: 'nguyenvana@example.com',
     role: 'admin',
-    sdt : '123123123'
+    sdt : '123123123',
+    diachi: 'hanoi'
   },
   {
     id: 2,
     name: 'Trần Thị B',
     email: 'tranthib@example.com',
     role: 'user',
-    sdt : '234234234'
+    sdt : '234234234',
+    diachi: 'hanoi'
   },
   {
     id: 3,
     name: 'Lê Văn C',
     email: 'levanc@example.com',
     role: 'user',
-    sdt : '456456456'
+    sdt : '456456456',
+    diachi: 'hanoi'
   },
   {
     id: 4,
     name: 'Phạm Thị D',
     email: 'phamthid@example.com',
     role: 'user',
-    sdt : '4567567567'
+    sdt : '4567567567',
+    diachi: 'hanoi'
   }
 ];
 filterText ='';

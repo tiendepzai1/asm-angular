@@ -45,6 +45,7 @@
         <th>Quantity</th>
         <th>Trạng Thái</th>
         <th>Thông tin sản phẩm</th>
+        <th>Chức năng</th>
       </tr>
     </thead>
     <tbody>
@@ -60,6 +61,9 @@
           {{ product.inStock ? 'còn hàng' : 'hết hàng' }}
         </td>
         <td><a [routerLink]="['/product-detail',product.id]">xem chi tiết</a></td>
+        <td>
+          <button class="btn btn-primary" (click)="removeProduct(product.id)"> Xóa </button>
+        </td>
       </tr>
     </tbody>
   </table>

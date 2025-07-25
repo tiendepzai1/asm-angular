@@ -1,39 +1,36 @@
-
-
-
 <div>
-   <div style="display: flex;
-   justify-content: space-around;">
-     <h2>Danh Sách Người Dùng</h2>   
+  <div style="display: flex; justify-content: space-around; align-items: center;">
+    <h2>Danh Sách Người Dùng</h2>
     <div>
-         <label for="">Tìm kiếm</label>
-     <input [(ngModel)] = "filterText" />
-     
+      <label for="">Tìm kiếm</label>
+      <input class="form-control" [(ngModel)]="filterText" placeholder="Nhập tên hoặc email" />
     </div>
-   </div>
-<!-- <div *ngIf = "filterUser().length>0;else noProduct"> -->
-    
-    <table >
-        
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>email</th>
-                <th>role</th>
-                <th>sdt</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{user.id}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.role}}</td>
-                <td>{{user.sdt}}</td>
+  </div>
 
-            </tr>
-        </tbody>
-    </table>
-<!-- </div> -->
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>role</th>
+        <th>sdt</th>
+        <th>dia chi</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="filterUser().length > 0; else noUser">
+      <tr *ngFor="let user of filterUser()">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.sdt }}</td>
+        <td>{{user.diachi}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noUser>
+    <div style="text-align: center;">Không tìm thấy người dùng nào.</div>
+  </ng-template>
 </div>

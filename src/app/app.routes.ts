@@ -6,6 +6,7 @@ import { User} from './user/user';
 import { ProductDetail } from './product-detail/product-detail';
 import { CartComponent } from './cart/cart';
 import { ProductCreate } from './product-create/product-create';
+import { OrderList } from './order-list/order-list';
 
 
 export const routes: Routes = [
@@ -33,7 +34,11 @@ export const routes: Routes = [
    {
       path : 'product/create',
       component : ProductCreate,
-   }
+   },
+   {
+      path : 'order',
+      component : OrderList,
+   },
 
 
 

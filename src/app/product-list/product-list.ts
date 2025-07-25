@@ -55,4 +55,11 @@ export class ProductListComponent {
      product.price.toString().includes(this.filterText.toLocaleLowerCase())
     );
   }
+  removeProduct(id : number){
+    const conf = confirm("bạn có muốn xóa k");
+    if(conf){
+        this.products = this.products.filter(product=>product.id !==id);
+        
+    }
+  }
 }
