@@ -16,6 +16,7 @@
         <th>role</th>
         <th>sdt</th>
         <th>dia chi</th>
+        <th>chức năng</th>
       </tr>
     </thead>
     <tbody *ngIf="filterUser().length > 0; else noUser">
@@ -26,6 +27,9 @@
         <td>{{ user.role }}</td>
         <td>{{ user.sdt }}</td>
         <td>{{user.diachi}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="handleDelete(user.id)">xóa</button>
+        </td>
       </tr>
     </tbody>
   </table>

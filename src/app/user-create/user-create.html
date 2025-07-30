@@ -1,0 +1,113 @@
+<p>user-create works!</p>
+<h3>Tạo người dùng mới</h3>
+
+<form #userForm="ngForm" (ngSubmit)="handleSubmit()">
+
+  <!-- Name -->
+  <div>
+    <label for="name">Họ và tên</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="user.name"
+      required
+      minlength="3"
+      #name="ngModel"
+      [ngClass]="{ 'is-invalid': name.invalid && name.touched }"
+      class="form-control"
+    />
+    <div *ngIf="name.invalid && name.touched">
+      <div *ngIf="name.errors?.['required']">Tên không được bỏ trống</div>
+      <div *ngIf="name.errors?.['minlength']">Tên phải dài hơn 3 ký tự</div>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="user.email"
+      required
+      email
+      #email="ngModel"
+      [ngClass]="{ 'is-invalid': email.invalid && email.touched }"
+      class="form-control"
+    />
+    <div *ngIf="email.invalid && email.touched">
+      <div *ngIf="email.errors?.['required']">Email không được bỏ trống</div>
+      <div *ngIf="email.errors?.['email']">Email không hợp lệ</div>
+    </div>
+  </div>
+
+  <!-- Role -->
+  <div>
+    <label for="role">Vai trò</label>
+    <select
+      id="role"
+      name="role"
+      [(ngModel)]="user.role"
+      required
+      #role="ngModel"
+      [ngClass]="{ 'is-invalid': role.invalid && role.touched }"
+      class="form-control"
+    >
+      <option value="">-- Chọn vai trò --</option>
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+    <div *ngIf="role.invalid && role.touched">
+      <div *ngIf="role.errors?.['required']">Vui lòng chọn vai trò</div>
+    </div>
+  </div>
+
+  <!-- Số điện thoại -->
+  <div>
+    <label for="sdt">Số điện thoại</label>
+    <input
+      type="text"
+      id="sdt"
+      name="sdt"
+      [(ngModel)]="user.sdt"
+      required
+      minlength="9"
+      #sdt="ngModel"
+      [ngClass]="{ 'is-invalid': sdt.invalid && sdt.touched }"
+      class="form-control"
+    />
+    <div *ngIf="sdt.invalid && sdt.touched">
+      <div *ngIf="sdt.errors?.['required']">Số điện thoại không được bỏ trống</div>
+      <div *ngIf="sdt.errors?.['minlength']">Số điện thoại ít nhất 9 chữ số</div>
+    </div>
+  </div>
+
+  <!-- Địa chỉ -->
+  <div>
+    <label for="diachi">Địa chỉ</label>
+    <input
+      type="text"
+      id="diachi"
+      name="diachi"
+      [(ngModel)]="user.diachi"
+      required
+      #diachi="ngModel"
+      [ngClass]="{ 'is-invalid': diachi.invalid && diachi.touched }"
+      class="form-control"
+    />
+    <div *ngIf="diachi.invalid && diachi.touched">
+      <div *ngIf="diachi.errors?.['required']">Địa chỉ không được bỏ trống</div>
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <button
+    [disabled]="userForm.invalid"
+    type="submit"
+    class="btn btn-success mt-3"
+  >
+    thêm người dùng
+  </button>
+</form>

@@ -7,6 +7,8 @@ import { ProductDetail } from './product-detail/product-detail';
 import { CartComponent } from './cart/cart';
 import { ProductCreate } from './product-create/product-create';
 import { OrderList } from './order-list/order-list';
+import { UserCreate } from './user-create/user-create';
+import { ProductUpdate } from './product-update/product-update';
 
 
 export const routes: Routes = [
@@ -38,6 +40,14 @@ export const routes: Routes = [
    {
       path : 'order',
       component : OrderList,
+   },
+    {
+      path : 'user/create',
+      component : UserCreate,
+   },
+     {
+      path : 'product/update',
+      component : ProductUpdate,
    },
 
 

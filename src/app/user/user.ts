@@ -59,5 +59,11 @@ filterUser (){
   )
 
 }
+handleDelete(id : number){
+  const conf = confirm("bạn có muốn xóa k ");
+  if(conf){
+    this.users = this.users.filter(user=>user.id !== id);
+  }
+}
 
 }

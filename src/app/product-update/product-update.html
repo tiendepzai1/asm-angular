@@ -1,0 +1,63 @@
+<p class="text-success">product-update works!</p>
+
+<form [formGroup]="productForm" (ngSubmit)="handleSubmit()" class="p-4 border rounded shadow-sm bg-light">
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Title:</label>
+    <input
+      id="title"
+      type="text"
+      class="form-control"
+      formControlName="title"
+      [ngClass]="{ 'is-invalid': productForm.get('title')?.invalid && productForm.get('title')?.touched }"
+    />
+    <div class="invalid-feedback" *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.touched">
+      Title is required and must be at least 3 characters.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Image URL:</label>
+    <input
+      id="image"
+      type="text"
+      class="form-control"
+      formControlName="image"
+      [ngClass]="{ 'is-invalid': productForm.get('image')?.invalid && productForm.get('image')?.touched }"
+    />
+    <div class="invalid-feedback" *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+      Image is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price:</label>
+    <input
+      id="price"
+      type="number"
+      class="form-control"
+      formControlName="price"
+      [ngClass]="{ 'is-invalid': productForm.get('price')?.invalid && productForm.get('price')?.touched }"
+    />
+    <div class="invalid-feedback" *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+      Price must be at least 1.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity:</label>
+    <input
+      id="quantity"
+      type="number"
+      class="form-control"
+      formControlName="quantity"
+      [ngClass]="{ 'is-invalid': productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched }"
+    />
+    <div class="invalid-feedback" *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched">
+      Quantity must be at least 1.
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
