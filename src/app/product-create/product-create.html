@@ -17,37 +17,42 @@
     <input type="number" id="price" name="price" [(ngModel)]="product.price" required min="1" #price="ngModel"
       [ngClass]="{'is-invalid' : price.invalid && price.touched}" class="form-control" />
 
-     <div *ngIf ="price.invalid && price.touched">
-      <div *ngIf ="price.errors?.['required']" > giá không được bỏ trống</div>
-      <div *ngIf ="price.errors?.['min']">giá phải lơn hơn 0</div>
-     </div>
+    <div *ngIf="price.invalid && price.touched">
+      <div *ngIf="price.errors?.['required']"> giá không được bỏ trống</div>
+      <div *ngIf="price.errors?.['min']">giá phải lơn hơn 0</div>
+    </div>
+    <label for="inStock">Tình trạng:</label>
+    <select [(ngModel)]="product.inStock" name="inStock" id="inStock" class="form-control">
+      <option [ngValue]="true">Còn hàng</option>
+      <option [ngValue]="false">Hết hàng</option>
+    </select> <br>
+
+
+
+
+    <label for="">số lượng</label>
+    <input type="number" name="quantity" [(ngModel)]="product.quantity" class="form-control">
+
+
+
+
+
 
   </div>
 
   <div>
     <label for="image">Image</label>
-    <input type="text"
-    id="image"
-    name="image"
-    [(ngModel)] = "product.image"
-    required
-    #image = "ngModel"
-    [ngClass]="{'is-invalid': price.invalid && price.touched}"
-    class="form-control"
-    />
-    <div *ngIf ="image.invalid && image.touched">
-      <div *ngIf = "image.errors?.['required']">nhập đường dẫn ảnh</div>
+    <input type="text" id="image" name="image" [(ngModel)]="product.image" required #image="ngModel"
+      [ngClass]="{'is-invalid': price.invalid && price.touched}" class="form-control" />
+    <div *ngIf="image.invalid && image.touched">
+      <div *ngIf="image.errors?.['required']">nhập đường dẫn ảnh</div>
     </div>
   </div>
 
- 
 
-<button 
-  [disabled]="productForm.invalid" 
-  type="submit" 
-  class="btn btn-primary"
->
-  Submit
-</button>
+
+  <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary">
+    Submit
+  </button>
 
 </form>

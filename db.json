@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Laptop",
       "price": 1000,
       "image": "https://picsum.photos/id/101/200/300",
@@ -9,7 +9,7 @@
       "quantity": 5
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Phone",
       "price": 500,
       "image": "https://picsum.photos/id/102/200/300",
@@ -17,12 +17,36 @@
       "quantity": 0
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Tablet",
       "price": 300,
       "image": "https://picsum.photos/id/103/200/300",
       "inStock": true,
       "quantity": 10
+    },
+    {
+      "id": 1,
+      "name": "LÊ VĂN TIẾN",
+      "image": "a1.jpg",
+      "price": 1,
+      "inStock": true,
+      "quantity": 1
+    },
+    {
+      "id": 0,
+      "name": "LÊ VĂN TIẾN",
+      "image": "a1.jpg",
+      "price": 122,
+      "inStock": true,
+      "quantity": 1
+    },
+    {
+      "id": 0,
+      "name": "LÊ VĂN TIẾN",
+      "image": "a1.jpg",
+      "price": 122,
+      "inStock": true,
+      "quantity": 1
     }
   ]
 }

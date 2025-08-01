@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ProductListService ,Product } from '../product-list-service';
+import { ProductService ,Product } from '../product-list-service';
 
 
 
@@ -31,10 +31,10 @@ export class ProductListComponent implements OnInit {
 
   
 
-  constructor(private productListService: ProductListService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productListService.getAllProduct().subscribe({
+    this.productService.getAllProduct().subscribe({
       next: (data) => {
         console.log(data);
         this.products = data
@@ -42,7 +42,7 @@ export class ProductListComponent implements OnInit {
 
       },
 
-      error: (err) => {
+      error: (err : any) => {
         console.log(err);
 
       }

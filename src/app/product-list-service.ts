@@ -18,11 +18,17 @@ export interface Product {
 })
 
 
-export class ProductListService {
+export class ProductService {
  private apiUrl = 'http://localhost:3001/products';
   constructor(private  http : HttpClient ) { }
 
   getAllProduct(): Observable<Product[]>{
     return this.http.get<Product[]>(this.apiUrl)
   }
+
+  getAddProduct(product : Product) : Observable<Product> {
+    return this.http.post<Product>(this.apiUrl,product);
+  }
+
+
 }
