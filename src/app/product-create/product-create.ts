@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../product-list-service';
+import {Router} from '@angular/router'
 
 
 
@@ -14,7 +15,7 @@ templateUrl: './product-create.html',
 })
 export class ProductCreate {
   product ={
-    id : 0 ,
+    
     name : "",
     image : "",
     price : 1,
@@ -23,12 +24,15 @@ export class ProductCreate {
 
   }
 
-  constructor(private  productAddService : ProductService){}
+  constructor(private  productAddService : ProductService , private router : Router){}
 
   handleSubmit(){
+
     this.productAddService.getAddProduct(this.product).subscribe({
       next :(data) =>{
         console.log(data);
+        alert("thêm thành công");
+        this.router.navigate(["/product"]);
        
       },
       error : (err) =>{

@@ -46,7 +46,7 @@ export const routes: Routes = [
       component : UserCreate,
    },
      {
-      path : 'product/update',
+      path : 'product/update/:id',
       component : ProductUpdate,
    },
 

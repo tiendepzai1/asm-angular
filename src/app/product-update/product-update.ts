@@ -1,36 +1,67 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+  import { Component, OnInit } from '@angular/core';
+  import { ActivatedRoute, Router } from '@angular/router';
+  import { ProductService, ProductAdd, Product } from '../product-list-service';
+  import { FormsModule, NgForm } from '@angular/forms';
+  import { CommonModule } from '@angular/common';
 
-@Component({
-  selector: 'app-product-update',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './product-update.html',
-  styleUrls: ['./product-update.css'], // <-- sửa `styleUrl` thành `styleUrls`
-})
-export class ProductUpdate {
-  productForm: FormGroup;
+  @Component({
+    selector: 'app-product-update',
+    templateUrl: './product-update.html',
+    styleUrls: ['./product-update.css'],
+    standalone: true,
+    imports: [FormsModule, CommonModule]
+  })
+  export class ProductUpdate implements OnInit {
+    productId!: number;
+    product: ProductAdd = {
+      name: '',
+      price: 0,
+      image: '',
+      inStock: true,
+      quantity: 0
+    };
 
-  constructor(private formBuilder: FormBuilder) {
-    this.productForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(3)]],
-      image: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.min(1)]],
-      quantity: ['', [Validators.required, Validators.min(1)]],
-    });
-  }
+    constructor(
+      private route: ActivatedRoute,
+      private productService: ProductService,
+      private router: Router
+    ) {}
 
-  handleSubmit() {
-    if (this.productForm.valid) {
-      console.log('Form value:', this.productForm.value);
-    } else {
-      console.warn('Form invalid:', this.productForm.errors);
+    ngOnInit(): void {
+      this.productId = Number(this.route.snapshot.paramMap.get('id'));
+
+      this.productService.getProductById(this.productId).subscribe({
+        next: (data: Product) => {
+          this.product = {
+            name: data.name,
+            price: data.price,
+            image: data.image,
+            inStock: data.inStock,
+            quantity: data.quantity
+          };
+        },
+        error: (err) => {
+          console.error('Không tìm thấy sản phẩm:', err);
+          alert('Sản phẩm không tồn tại!');
+          this.router.navigate(['/product']);
+        }
+      });
+    }
+
+    handleUpdate(form: NgForm): void {
+      if (form.valid) {
+        this.productService.updateProduct(this.productId, this.product).subscribe({
+          next: () => {
+            alert('Cập nhật thành công!');
+            this.router.navigate(['/product']);
+          },
+          error: (err :any) => {
+            alert('Lỗi khi cập nhật!');
+            console.error(err);
+          }
+        });
+      } else {
+        alert('Form không hợp lệ!');
+      }
     }
   }
-}

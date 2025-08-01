@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ProductService ,Product } from '../product-list-service';
+import { ProductService, Product } from '../product-list-service';
+import{ Router} from '@angular/router'
 
 
 
@@ -10,15 +11,17 @@ import { ProductService ,Product } from '../product-list-service';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink ],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './product-list.html',
   styleUrls: ['./product-list.css']
 })
 export class ProductListComponent implements OnInit {
 
- 
- 
-   products: Product[] = [];
+
+
+
+
+  products: Product[] = [];
 
 
 
@@ -29,20 +32,24 @@ export class ProductListComponent implements OnInit {
 
 
 
-  
 
-  constructor(private productService: ProductService) { }
+
+  constructor(private productService: ProductService ) { }
 
   ngOnInit() {
     this.productService.getAllProduct().subscribe({
       next: (data) => {
         console.log(data);
         this.products = data
+          
+          
+
+
 
 
       },
 
-      error: (err : any) => {
+      error: (err: any) => {
         console.log(err);
 
       }

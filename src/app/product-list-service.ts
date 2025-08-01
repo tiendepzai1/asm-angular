@@ -1,16 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import{Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 
 export interface Product {
-  id : number,
-  name : string,
-  price : number,
-  image : string,
-  inStock : boolean
-  quantity :number
+  id: number, // ? tác dụng trường đó có thể có hoặc không
+  name: string,
+  price: number,
+  image: string,
+  inStock: boolean
+  quantity: number
+}
+export interface ProductAdd {
+  // ? tác dụng trường đó có thể có hoặc không
+  name: string,
+  price: number,
+  image: string,
+  inStock: boolean
+  quantity: number
 }
 
 @Injectable({
@@ -19,15 +27,22 @@ export interface Product {
 
 
 export class ProductService {
- private apiUrl = 'http://localhost:3001/products';
-  constructor(private  http : HttpClient ) { }
+  private apiUrl = 'http://localhost:3001/products';
+  constructor(private http: HttpClient) { }
 
-  getAllProduct(): Observable<Product[]>{
+  getAllProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl)
   }
 
-  getAddProduct(product : Product) : Observable<Product> {
-    return this.http.post<Product>(this.apiUrl,product);
+  getAddProduct(product: ProductAdd): Observable<ProductAdd> {
+    return this.http.post<ProductAdd>(this.apiUrl, product);
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
+  updateProduct(id: number, product: ProductAdd): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/${id}`, product);
   }
 
 
