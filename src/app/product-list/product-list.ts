@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ProductService, Product } from '../product-list-service';
-import{ Router} from '@angular/router'
+import { Router } from '@angular/router'
 
 
 
@@ -16,37 +16,18 @@ import{ Router} from '@angular/router'
   styleUrls: ['./product-list.css']
 })
 export class ProductListComponent implements OnInit {
-
-
-
-
-
   products: Product[] = [];
-
-
-
   title = 'product-list';
   productName = '';
   filterText = '';
   isAvailable = true;
-
-
-
-
-
-  constructor(private productService: ProductService ) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.productService.getAllProduct().subscribe({
       next: (data) => {
         console.log(data);
         this.products = data
-          
-          
-
-
-
-
       },
 
       error: (err: any) => {
@@ -71,11 +52,18 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  removeProduct(id: number) {
-    const conf = confirm("bạn có muốn xóa k");
-    if (conf) {
-      this.products = this.products.filter(product => product.id !== id);
-
-    }
+removeProduct(id: number) {
+  const conf = confirm("Bạn có muốn xóa không?");
+  if (conf) {
+    this.productService.deleteProduct(id).subscribe({
+      next: () => {
+        this.products = this.products.filter(product => product.id !== id);
+      },
+      error: (err) => {
+        console.error("Lỗi khi xóa sản phẩm:", err);
+      }
+    });
   }
+}
+
 }
